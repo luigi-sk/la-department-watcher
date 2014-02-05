@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  departmentid: MyString
+  name: MyString
+  onlinestatus: MyString
+  presetstatus: MyString
+
+two:
+  departmentid: MyString
+  name: MyString
+  onlinestatus: MyString
+  presetstatus: MyString

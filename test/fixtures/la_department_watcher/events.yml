@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 
+  start_at: 2014-02-05 17:50:29
+  end_at: 2014-02-05 17:50:29
+  text_description: MyText
+  notify_sent_at: 2014-02-05 17:50:29
+  notify_sent_to: MyString
+  agents_statuses_json: MyText
+
+two:
+  type: 
+  start_at: 2014-02-05 17:50:29
+  end_at: 2014-02-05 17:50:29
+  text_description: MyText
+  notify_sent_at: 2014-02-05 17:50:29
+  notify_sent_to: MyString
+  agents_statuses_json: MyText
