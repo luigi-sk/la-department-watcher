@@ -10,10 +10,14 @@ module LaDepartmentWatcher
       department_db
     end
 
+    def last_alert
+      alerts.order("created_at DESC").limit(1).first
+    end
+
     def ok?()
-      alert = alerts.order("created_at DESC").limit(1).first
+      alert = last_alert
       # its ok if last alert doesnt exist OR last alert is ended
-      alert.nil? || !alert.end_at.nil?
+      alert.nil? || alert.closed?
     end
 
     def update_from_api(department)

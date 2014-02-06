@@ -9,23 +9,19 @@ module LaDepartmentWatcher
         department = Department.find_by_department(department_api)
         status_alert_find = false
         find_for_status.each { |s| status_alert_find = true if department.onlinestatus.include?(s) }
-        if status_alert_find && department.ok?
-          Event.start_alert(department)
-        elsif !status_alert_find && !department.ok?
-          Event.end_alert(department)
+        if status_alert_find
+          # alert status is found
+          if department.ok? # start alert if department ok
+            Event.start_alert(department)
+          else
+            DepartmentMailer.notify_alert(department) if department.last_alert.email_alert?
+          end
+        else
+          # alert status isn't found
+          Event.end_alert(department) unless department.ok?
         end
       end
     end
 
-    def alert_is_open?(department)
-      last = Department.find_last_by_departmentid(department['departmentid'])
-      if last.new_record?
-        Department.create_from_department_api(department)
-        return false
-      end
-
-
-
-    end
   end
 end

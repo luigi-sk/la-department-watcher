@@ -5,7 +5,13 @@ module LaDepartmentWatcher
     end
 
     def email_alert?
+      end_at = DateTime.now() || end_at
+      return false if start_at.nil?
       (end_at.to_i - start_at.to_i) > LaDepartmentWatcher::Config.get.config[:notify_offset]
+    end
+
+    def closed?
+      !end_at.nil?
     end
   end
 end
