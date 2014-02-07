@@ -7,4 +7,4 @@ notify_offset: 1800 # 30minutes = 1800seconds
 departments:
   chat_support_department:
     departmentid: 5965d21e
-    warning_statuses: T,P
+    online_statuses: T,P

@@ -4,11 +4,10 @@ module LaDepartmentWatcher
       LaDepartmentWatcher::Config.get.config[:departments].each do |name, options|
         Rails.logger.info("Check department #{name}")
         departmentid = options['departmentid']
-        find_for_status = options['warning_statuses'].split(",")
+        find_for_status = options['online_statuses'].downcase.split(",")
         department_api = DepartmentApi.find(departmentid)
         department = Department.find_by_department(department_api)
-        status_alert_find = false
-        online_channels = find_for_status & department.onlinestatus.to_s.split(//)
+        online_channels = find_for_status & department.onlinestatus.to_s.downcase.split(//)
         status_alert_find = online_channels.size == 0
         if status_alert_find
           # alert status is found
