@@ -8,7 +8,8 @@ module LaDepartmentWatcher
         department_api = DepartmentApi.find(departmentid)
         department = Department.find_by_department(department_api)
         status_alert_find = false
-        find_for_status.each { |s| status_alert_find = true if department.onlinestatus.include?(s) }
+        online_channels = find_for_status & department.onlinestatus.to_s.split(//)
+        status_alert_find = online_channels.size == 0
         if status_alert_find
           # alert status is found
           if department.ok? # start alert if department ok

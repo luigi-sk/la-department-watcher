@@ -9,6 +9,7 @@ module LaDepartmentWatcher
     def self.end_alert(department)
       alert = Alert.last(department.id)
       alert.update_attributes( end_at: DateTime.now())
+      DepartmentMailer.notify_alert_end(department)
     end
 
     def notify_sent?
