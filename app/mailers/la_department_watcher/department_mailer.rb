@@ -18,7 +18,7 @@ module LaDepartmentWatcher
     def notify_alert_end(department)
       @department = department
       @alert = department.last_alert
-      @minutes_offline = ( @alert.end_at.to_i - @alert.start_at.to_i * (1.0 / 60)).to_i
+      @minutes_offline = ((@alert.end_at.to_i - @alert.start_at.to_i) * (1.0 / 60)).to_i
 
       mail( to: LaDepartmentWatcher::Config.get.config[:notify_to],
             subject: "Department #{department.name} is online").deliver
