@@ -6,7 +6,7 @@ module LaDepartmentWatcher
         departmentid = options['departmentid']
         find_for_status = options['online_statuses'].downcase.split(",")
         department_api = DepartmentApi.find(departmentid)
-        send_and_notify(department_api, find_for_status)
+        save_and_notify(department_api, find_for_status)
       end
     end
 
