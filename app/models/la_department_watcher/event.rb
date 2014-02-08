@@ -9,7 +9,7 @@ module LaDepartmentWatcher
     def self.end_alert(department)
       alert = Alert.last(department.id)
       alert.update_attributes( end_at: DateTime.now())
-      DepartmentMailer.notify_alert_end(department) unless alert.start_at.nil?
+      DepartmentMailer.notify_alert_end(department) unless alert.notify_sent_at.nil?
     end
 
     def notify_sent?
