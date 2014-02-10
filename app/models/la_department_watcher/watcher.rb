@@ -1,13 +1,13 @@
 module LaDepartmentWatcher
   module Watcher
 
-    def sync
+    # sync all departments from config
+    def self.sync
       LaDepartmentWatcher::Config.get.config[:departments].each do |name, options|
-        # sync departments
+        # sync department
         department_api = DepartmentApi.find(options['departmentid'])
         Department.find_by_department(department_api)
       end
-
     end
 
     def self.watch
