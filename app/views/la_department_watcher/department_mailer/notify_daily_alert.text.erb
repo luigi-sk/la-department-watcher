@@ -6,7 +6,7 @@ List of offline parts:
 <% @alerts.each do |alert| %>
 <%=l alert.start_at, format: :long %> - offline alert was opened
 <%=l alert.end_at, format: :long %> - offline alert was closed
-It was <%= (@alert.duration * (1.0 / 60)).to_i %> minutes.
+It was <%= (alert.duration * (1.0 / 60)).to_i %> minutes.
 ----------------------------------------
 <% end %>
 
