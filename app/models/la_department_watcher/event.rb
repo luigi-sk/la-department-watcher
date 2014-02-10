@@ -2,6 +2,8 @@ module LaDepartmentWatcher
   class Event < ActiveRecord::Base
     attr_accessible :agents_statuses_json, :end_at, :notify_sent_at, :notify_sent_to, :start_at, :text_description, :type, :department_id
 
+    belongs_to :department, :class_name => 'LaDepartmentWatcher::Department'
+
     def self.start_alert(department)
       alert = Alert.create(department_id: department.id, start_at: DateTime.now(), text_description: "Department #{department.name} is  offline")
     end

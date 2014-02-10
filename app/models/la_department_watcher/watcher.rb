@@ -1,12 +1,26 @@
 module LaDepartmentWatcher
   module Watcher
+
+    def sync
+      LaDepartmentWatcher::Config.get.config[:departments].each do |name, options|
+        # sync departments
+        department_api = DepartmentApi.find(options['departmentid'])
+        Department.find_by_department(department_api)
+      end
+
+    end
+
     def self.watch
+      sync
       LaDepartmentWatcher::Config.get.config[:departments].each do |name, options|
         Rails.logger.info("Check department #{name}")
-        departmentid = options['departmentid']
         find_for_status = options['online_statuses'].downcase.split(",")
-        department_api = DepartmentApi.find(departmentid)
-        save_and_notify(department_api, find_for_status)
+        department = Department.find_by_departmentid(departmentid)
+        # watch for offline status
+        notify(department, find_for_status)
+
+        # watch for sum of offline per day
+        notify_per_day(department)
       end
     end
 
@@ -18,13 +32,12 @@ module LaDepartmentWatcher
     #        :end_alert - alert was closed
     #        nil - nothing happend
     #
-    # @param [Hash] department_api
+    # @param [LaDepartmentWatcher::Department] department
     # @param [Array<String>] online_statuses
     # @return [Symbol]
-    def self.save_and_notify(department_api, online_statuses)
+    def self.notify(department, online_statuses)
       result = nil
       online_statuses = online_statuses.map { |i| i.downcase }
-      department = Department.find_by_department(department_api)
       department_statuses = department.onlinestatus.to_s.downcase.split(//)
       online_channels = online_statuses & department_statuses
       status_alert_find = online_channels.size == 0 && online_statuses.size > 0
@@ -48,6 +61,21 @@ module LaDepartmentWatcher
         end
       end
       result
+    end
+
+    def self.notify_per_day(department)
+      res = nil
+      d = DateTime.now - 1
+      return :already_reported if DailyOfflineAlert.reported_at?(d)
+
+      daily_alert = DailyOfflineAlert.new(notify_sent_at: d)
+      daily_alert.department = department
+      if daily_alert.email_alert?
+        DepartmentMailer.notify_daily_alert(daily_alert, department)
+        res = :notify
+      end
+
+      res
     end
 
   end

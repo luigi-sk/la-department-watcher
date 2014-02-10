@@ -12,7 +12,7 @@ module LaDepartmentWatcher
     def initialize
       file_path = "#{Rails.root}/config/la.yml"
       Rails.logger.info("Initializing LaDepartmentWatcher::Config from #{file_path}")
-      @config = YAML.load_file(file_path).to_hash.symbolize_keys
+      @config = YAML.load_file(file_path).to_hash.with_indifferent_access
     end
 
   end

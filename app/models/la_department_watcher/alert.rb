@@ -13,5 +13,9 @@ module LaDepartmentWatcher
     def closed?
       !end_at.nil?
     end
+
+    def duration
+      [(end_at.to_i - start_at.to_i), 0].max()
+    end
   end
 end

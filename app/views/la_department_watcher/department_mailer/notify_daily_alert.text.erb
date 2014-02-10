@@ -1,0 +1,15 @@
+Hi,
+
+Department "<%= @department.name %>" exceed daily offline limit. It was offline <%= @minutes_offline %> minutes.
+
+List of offline parts:
+<% @alerts.each do |alert| %>
+<%=l alert.start_at, format: :long %> - offline alert was opened
+<%=l alert.end_at, format: :long %> - offline alert was closed
+It was <%= (@alert.duration * (1.0 / 60)).to_i %> minutes.
+----------------------------------------
+<% end %>
+
+
+
+ladesk link: http://support.qualityunit.com/agent/#login
