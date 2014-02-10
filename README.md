@@ -2,7 +2,7 @@
 
 This is an application to detect if department of LiveAgent(ladesk.com) is online. If the department is offline( not available on chat and phone), then application sent an email notification.
 
-### Instalation
+### Installation
  
  LaDepartmentWatcher is a rails engine. Install it with Bundler in your Gemfile.
  
