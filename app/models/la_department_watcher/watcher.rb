@@ -11,6 +11,7 @@ module LaDepartmentWatcher
     end
 
     def self.watch
+      # synchronize with api
       sync
       LaDepartmentWatcher::Config.get.config[:departments].each do |name, options|
         Rails.logger.info("Check department #{name}")
@@ -63,6 +64,9 @@ module LaDepartmentWatcher
       result
     end
 
+
+    # @param [LaDepartmentWatcher::Department] department
+    # @return [Symbol]
     def self.notify_per_day(department)
       res = nil
       d = DateTime.now - 1
