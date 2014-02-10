@@ -7,6 +7,7 @@ This is an application to detect if department of LiveAgent(ladesk.com) is onlin
  la-department-watcher is a rails engine. Install it with Bundler in your Gemfile.
  
  ```ruby
+ # Gemfile
  gem 'la-department-watcher', :git => 'git://github.com/luigi-sk/la-department-watcher.git'
  ```
  
@@ -15,6 +16,15 @@ This is an application to detect if department of LiveAgent(ladesk.com) is onlin
  rake la_department_watcher:install:migrations
  rake db:migrate
  ```
+ 
+ Mount an engine on `config/routes.rb`.
+ ```ruby
+ # config/routes.rb
+ mount LaDepartmentWatcher::Engine, at: "/ladesk"
+ ```
+ 
+ Setup cronjob to call `curl 'http://you-application-host/ladesk/department/watch.json'` every minute
+ 
  
  Your LiveAgent department and apikey is defined by `config/la.yml`.
  
