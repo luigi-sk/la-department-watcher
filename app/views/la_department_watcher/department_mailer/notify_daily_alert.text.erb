@@ -1,6 +1,6 @@
 Hi,
 
-Department "<%= @department.name %>" exceed daily offline limit. It was offline <%= @minutes_offline %> minutes.
+Department "<%= @department.name %>" exceed daily offline limit <%= @limit %> minutes. It was offline <%= @minutes_offline %> minutes.
 
 List of offline parts:
 <% @alerts.each do |alert| %>
