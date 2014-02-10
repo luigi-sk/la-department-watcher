@@ -5,6 +5,6 @@ notify_from: test@example.com
 notify_to: notify-to@example.com
 notify_offset: 1800 # 30minutes = 1800seconds
 departments:
-  chat_support_department:
+  your_department_name:
     departmentid: 5965d21e
     online_statuses: T,P
