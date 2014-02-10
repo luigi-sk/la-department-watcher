@@ -16,7 +16,7 @@ module LaDepartmentWatcher
       LaDepartmentWatcher::Config.get.config[:departments].each do |name, options|
         Rails.logger.info("Check department #{name}")
         find_for_status = options['online_statuses'].downcase.split(",")
-        department = Department.find_by_departmentid(departmentid)
+        department = Department.find_by_departmentid(options['departmentid'])
         # watch for offline status
         notify(department, find_for_status)
 
@@ -78,7 +78,7 @@ module LaDepartmentWatcher
         DepartmentMailer.notify_daily_alert(daily_alert, department)
         res = :notify
       end
-
+      daily_alert.save
       res
     end
 
