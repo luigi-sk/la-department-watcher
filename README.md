@@ -4,11 +4,11 @@ This is an application to detect if department of LiveAgent(ladesk.com) is onlin
 
 ### Instalation
  
- la-department-watcher is a rails engine. Install it with Bundler in your Gemfile.
+ LaDepartmentWatcher is a rails engine. Install it with Bundler in your Gemfile.
  
  ```ruby
  # Gemfile
- gem 'la-department-watcher', :git => 'git://github.com/luigi-sk/la-department-watcher.git'
+ gem 'la_department_watcher', :git => 'git://github.com/luigi-sk/la-department-watcher.git'
  ```
  
  ```sh
