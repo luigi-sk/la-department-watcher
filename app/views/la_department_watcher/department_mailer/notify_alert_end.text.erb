@@ -2,7 +2,7 @@ Hi,
 
 Department "<%= @department.name %>" is online. It was offline <%= @minutes_offline %> minutes.
 
-Offline alert was opened at: <%= @alert.start_at.to_s %>.
-Offline alert was closed at: <%= @alert.end_at.to_s %>.
+Offline alert was opened at: <%=l @alert.start_at, format: :long %>.
+Offline alert was closed at: <%=l @alert.end_at, format: :long %>.
 
 ladesk link: http://support.qualityunit.com/agent/#login
