@@ -6,5 +6,5 @@ notify_to: notify-to@example.com
 notify_offset: 1800 # 30minutes = 1800seconds
 departments:
   your_department_name:
-    departmentid: 5965d21e
+    departmentid: 111111t
     online_statuses: T,P
