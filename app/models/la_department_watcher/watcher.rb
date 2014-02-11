@@ -69,7 +69,7 @@ module LaDepartmentWatcher
     # @return [Symbol]
     def self.notify_per_day(department)
       res = nil
-      d = DateTime.now - 1
+      d = DateTime.now - 1.day
       return :already_reported if DailyOfflineAlert.reported_at?(d)
 
       daily_alert = DailyOfflineAlert.new(notify_sent_at: d)
