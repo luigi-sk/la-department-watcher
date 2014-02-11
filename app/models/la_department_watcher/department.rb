@@ -21,7 +21,7 @@ module LaDepartmentWatcher
 
     def find_alerts_by_date(date)
       alerts.where("(start_at BETWEEN :from AND :to) AND (end_at BETWEEN :from AND :to)",
-        { from: date.to_time.beginning_of_day, to: date.to_time.end_of_day })
+        { from: date.beginning_of_day, to: date.end_of_day })
     end
 
     def ok?()
