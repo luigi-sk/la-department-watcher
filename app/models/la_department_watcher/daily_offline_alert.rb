@@ -12,7 +12,6 @@ module LaDepartmentWatcher
     end
 
     def self.reported_at?(date)
-      date = date.to_time
       DailyOfflineAlert.where("notify_sent_at BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day).first
     end
 
