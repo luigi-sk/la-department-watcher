@@ -18,8 +18,8 @@ module LaDepartmentWatcher
     def self.sum_offline_time(alerts, date)
       res = 0
       alerts.each do |alert|
-        start_at = [alert.start_at, date.to_time.beginning_of_day].max()
-        end_at = [alert.end_at, date.to_time.end_of_day].min()
+        start_at = [alert.start_at, date.beginning_of_day].max()
+        end_at = [alert.end_at, date.end_of_day].min()
 
         res += Alert.new(start_at: start_at, end_at: end_at).duration
       end
