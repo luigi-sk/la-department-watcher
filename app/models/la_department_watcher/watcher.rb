@@ -76,9 +76,9 @@ module LaDepartmentWatcher
       daily_alert.department = department
       if daily_alert.email_alert?
         DepartmentMailer.notify_daily_alert(daily_alert, department)
+        daily_alert.save
         res = :notify
-      end
-      daily_alert.save
+      end      
       res
     end
 
